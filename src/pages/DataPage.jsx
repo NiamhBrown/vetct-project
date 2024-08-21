@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getCases } from "../services/cases";
+import Case from "../components/Case";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const DataPage = () => {
@@ -66,13 +67,7 @@ const DataPage = () => {
                       className={`collapse ${expandedRow === caseItem.id ? 'show' : ''}`}
                     >
                       {/* Collapsible content */}
-                      <div className="p-3">
-                        <p><strong>Reported Date:</strong> {caseItem.reported_date}</p>
-                        <p><strong>Species:</strong> {caseItem.species}</p>
-                        <p><strong>Turnaround Time:</strong> {caseItem.turnaround}</p>
-                        <p><strong>Image:</strong></p>
-                        <img src={caseItem.image_url} alt={caseItem.species} className="img-fluid" />
-                      </div>
+                      <Case caseItem={caseItem}/>
                     </div>
                   </td>
                 </tr>
