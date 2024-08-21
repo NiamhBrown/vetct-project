@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+
 const Case = ( {caseItem} ) => {
 
     return (
@@ -11,6 +12,7 @@ const Case = ( {caseItem} ) => {
     )
 }
 
+// If converting to TS, would create an interface with props.
 Case.propTypes = {
     caseItem: PropTypes.shape({
         reported_date: PropTypes.string.isRequired,
