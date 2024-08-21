@@ -1,13 +1,13 @@
 
-import React, { useState } from "react";
+import React, { useState }from "react";
 import Case from "./Case"
 import PropTypes from 'prop-types';
 
+const CasesTable = ( { filteredCases }) => {
+
+  const [expandedRow, setExpandedRow] = useState(null);
 
 
-export const CasesTable = ( { filteredCases }) => {
-
-  const [expandedRow, setExpandedRow] = useState(null); 
 
     return (
         <table className="table table-bordered">
@@ -19,6 +19,7 @@ export const CasesTable = ( { filteredCases }) => {
               <th>Owner Name</th>
               <th>Specialty</th>
               <th>Creation Date</th>
+              <th></th> 
             </tr>
           </thead>
           <tbody>
@@ -38,6 +39,7 @@ export const CasesTable = ( { filteredCases }) => {
                   <td>{caseItem.owner}</td>
                   <td>{caseItem.specialty}</td>
                   <td>{caseItem.creation_date}</td>
+                  <td><a href={`/case/${caseItem.id}`}>View more</a></td>
                 </tr>
                 <tr>
                   <td colSpan="6" className="p-0">
@@ -66,3 +68,5 @@ CasesTable.propTypes = {
       creation_date: PropTypes.string.isRequired,
   }).isRequired
 };
+
+export default CasesTable

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { getPaginatedCases } from "../services/cases";
-import { CasesTable } from "../components/CasesTable";
+import CasesTable from "../components/CasesTable";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './DataPage.css'
 
