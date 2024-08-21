@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 const Case = ( {caseItem} ) => {
-    console.log("HERE THIS IS THE CASE ITEM:", caseItem)
+
     return (
                         <div className="p-3">
                         <p><strong>Reported Date:</strong> {caseItem.reported_date}</p>

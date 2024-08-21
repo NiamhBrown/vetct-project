@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import { getCases } from "../services/cases";
 import Case from "../components/Case";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './DataPage.css'
 
 const DataPage = () => {
   const [cases, setCases] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [expandedRow, setExpandedRow] = useState(null); 
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     getCases()
@@ -25,12 +27,36 @@ const DataPage = () => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
 
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const filteredCases = cases.filter((caseItem) => 
+    caseItem.patient.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    caseItem.species.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   const toggleRow = (caseId) => {
     setExpandedRow(expandedRow === caseId ? null : caseId);
   };
 
   return (
     <div className="container">
+        <img className="img-fluid" src="https://uk.vet-ct.com/hubfs/VetCT-NewLogoWhite-padded.png" alt="VET.CT logo" />
+        <div className="mb-3">
+        {/* add a label for screen readers  */}
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Search by patient name or breed"
+          value={searchQuery}
+          onChange={handleSearchChange}
+        />
+        </div>
+        <div>
+            {filteredCases.length === 1 ? `${filteredCases.length} case found` : `${filteredCases.length} cases found`} 
+        </div>
+
       {cases.length > 0 ? (
         <table className="table table-bordered">
           <thead>
@@ -44,7 +70,7 @@ const DataPage = () => {
             </tr>
           </thead>
           <tbody>
-            {cases.map((caseItem) => (
+            {filteredCases.map((caseItem) => (
               <React.Fragment key={caseItem.id}>
                 <tr>
                   <td>

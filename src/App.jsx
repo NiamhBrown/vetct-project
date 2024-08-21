@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import DataPage from "./pages/DataPage"
+import "./App.css"
 
 
 const router = createBrowserRouter([
