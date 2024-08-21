@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { useLocation } from 'react-router-dom'
+
 
 import { getCase } from "../services/cases";
 
@@ -6,10 +8,12 @@ import { getCase } from "../services/cases";
 const ViewCasePage = () => {
     const [caseInfo, setCaseInfo] = useState();
 
+    const location = useLocation()
+    const { id } = location.state
+
     const getCaseInfo = async () => {
         try {
-            console.log(location.state)
-            let response = await getCase(location.state.id);
+            let response = await getCase(id);
             setCaseInfo(response)
             console.log(caseInfo)
         }
@@ -25,7 +29,7 @@ const ViewCasePage = () => {
       }, []);
 
     return (
-        <p>{"hi"}</p>
+        <p>{caseInfo.patient}</p>
     )
 }
 

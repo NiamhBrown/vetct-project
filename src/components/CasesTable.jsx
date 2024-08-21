@@ -1,13 +1,12 @@
 
 import React, { useState }from "react";
+import { Link } from 'react-router-dom';
 import Case from "./Case"
 import PropTypes from 'prop-types';
 
 const CasesTable = ( { filteredCases }) => {
 
   const [expandedRow, setExpandedRow] = useState(null);
-
-
 
     return (
         <table className="table table-bordered">
@@ -39,7 +38,9 @@ const CasesTable = ( { filteredCases }) => {
                   <td>{caseItem.owner}</td>
                   <td>{caseItem.specialty}</td>
                   <td>{caseItem.creation_date}</td>
-                  <td><a href={`/case/${caseItem.id}`}>View more</a></td>
+                  <td>
+                    <Link to={`/case/${caseItem.id}`} state={{ id: `${caseItem.id}`}}>View more</Link>
+                  </td>
                 </tr>
                 <tr>
                   <td colSpan="6" className="p-0">
