@@ -68,13 +68,6 @@ const DataPage = () => {
                     >
                       {/* Collapsible content */}
                       <Case caseItem={caseItem}/>
-                      {/* <div className="p-3">
-                        <p><strong>Reported Date:</strong> {caseItem.reported_date}</p>
-                        <p><strong>Species:</strong> {caseItem.species}</p>
-                        <p><strong>Turnaround Time:</strong> {caseItem.turnaround}</p>
-                        <p><strong>Image:</strong></p>
-                        <img src={caseItem.image_url} alt={caseItem.species} className="img-fluid" />
-                      </div> */}
                     </div>
                   </td>
                 </tr>
