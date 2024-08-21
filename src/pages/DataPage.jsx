@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getCases } from "../services/cases";
 import Case from "../components/Case";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './DataPage.css'
 
 const DataPage = () => {
   const [cases, setCases] = useState([]);
@@ -41,6 +42,7 @@ const DataPage = () => {
 
   return (
     <div className="container">
+        <img className="img-fluid" src="https://uk.vet-ct.com/hubfs/VetCT-NewLogoWhite-padded.png" alt="VET.CT logo" />
         <div className="mb-3">
         {/* add a label for screen readers  */}
         <input
