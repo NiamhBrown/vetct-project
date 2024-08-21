@@ -1,5 +1,9 @@
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
+/**
+ * Makes a call to the /cases endpoint to return a list of all cases.
+ * @returns a
+ */
 export const getCases = async () => {
     let allCases = [];
     let currentPage = 1;

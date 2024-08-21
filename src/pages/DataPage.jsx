@@ -6,39 +6,36 @@ import './DataPage.css'
 
 const DataPage = () => {
   const [cases, setCases] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [expandedRow, setExpandedRow] = useState(null); 
   const [searchQuery, setSearchQuery] = useState("");
 
-  useEffect(() => {
-    getCases()
-      .then((data) => {
-        setCases(data);
+  const getAllCases = async () => {
+    try {
+        setLoading(true);
+        let cases = await getCases();
+        setCases(cases)
         setLoading(false);
-      })
-      .catch((error) => {
+    }
+    catch(error) {
         console.error("Error fetching cases:", error);
         setError(error.message);
         setLoading(false);
-      });
+    }
+  };
+
+  useEffect(() => {
+    getAllCases();
   }, []);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
 
-  const handleSearchChange = (event) => {
-    setSearchQuery(event.target.value);
-  };
-
   const filteredCases = cases.filter((caseItem) => 
     caseItem.patient.toLowerCase().includes(searchQuery.toLowerCase()) ||
     caseItem.species.toLowerCase().includes(searchQuery.toLowerCase())
   );
-
-  const toggleRow = (caseId) => {
-    setExpandedRow(expandedRow === caseId ? null : caseId);
-  };
 
   return (
     <div className="container">
@@ -50,7 +47,7 @@ const DataPage = () => {
           className="form-control"
           placeholder="Search by patient name or breed"
           value={searchQuery}
-          onChange={handleSearchChange}
+          onChange={(event) => setSearchQuery(event.target.value)}
         />
         </div>
         <div>
@@ -76,7 +73,7 @@ const DataPage = () => {
                   <td>
                     <button
                       className="btn"
-                      onClick={() => toggleRow(caseItem.id)}
+                      onClick={() => setExpandedRow(expandedRow === caseItem.id ? null : caseItem.id)}
                     >
                       {expandedRow === caseItem.id ? '▲' : '▼'}
                     </button>
