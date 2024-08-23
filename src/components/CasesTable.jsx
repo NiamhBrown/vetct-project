@@ -18,7 +18,6 @@ const CasesTable = ( { filteredCases }) => {
               <th>Owner Name</th>
               <th>Specialty</th>
               <th>Creation Date</th>
-              <th></th> 
             </tr>
           </thead>
           <tbody>
@@ -38,9 +37,6 @@ const CasesTable = ( { filteredCases }) => {
                   <td>{caseItem.owner}</td>
                   <td>{caseItem.specialty}</td>
                   <td>{caseItem.creation_date}</td>
-                  <td>
-                    <Link to={`/case/${caseItem.id}`} state={{ id: `${caseItem.id}`}}>View more</Link>
-                  </td>
                 </tr>
                 <tr>
                   <td colSpan="6" className="p-0">

@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-import { getPaginatedCases } from "../services/cases";
-import CasesTable from "../components/CasesTable";
+import { getPaginatedCases } from '../services/cases';
+import CasesTable from '../components/CasesTable';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './DataPage.css'
 
@@ -11,7 +11,7 @@ const DataPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
   const [totalPages, setTotalPages] = useState()
 
 
@@ -26,7 +26,7 @@ const DataPage = () => {
 
     }
     catch(error) {
-        console.error("Error fetching cases:", error);
+        console.error('Error fetching cases:', error);
         setError(error.message);
         setLoading(false);
     }
@@ -46,10 +46,9 @@ const DataPage = () => {
     caseItem.species.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  console.log("currentPage", currentPage)
 
   return (
-    <div className="container">
+    <div className='container'>
         <img className="img-fluid" src="https://uk.vet-ct.com/hubfs/VetCT-NewLogoWhite-padded.png" alt="VET.CT logo" />
         <div className="mb-3">
         {/* add a label for screen readers  */}
@@ -61,20 +60,19 @@ const DataPage = () => {
           onChange={(event) => setSearchQuery(event.target.value)}
         />
         </div>
-        <div>
+        <p className='cases-no'>
             {filteredCases.length === 1 ? `Showing ${filteredCases.length} case ` : `Showing ${filteredCases.length} cases`} 
-        </div>
+        </p>
 
       {cases.length > 0 ? (
         <CasesTable filteredCases = { filteredCases }/>
       ) : (
         <p>No cases found</p>
       )}
-              
-            <Stack spacing={2}>
-            <Pagination size="large" className="pag-custom"count={totalPages} onChange={(event, page) => setCurrentPage(page)} page={currentPage}/>
-
-          </Stack>
+      
+      <Stack spacing={2}>
+        <Pagination size='large' className='pagination'count={totalPages} onChange={(event, page) => setCurrentPage(page)} page={currentPage}/>
+      </Stack>
           
     </div>
   );
