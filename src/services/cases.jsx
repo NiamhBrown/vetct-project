@@ -1,6 +1,5 @@
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
-
 /**
  * Makes a call to the /cases endpoint to return a single case.
  * @param caseId The Id of the case being requested.

@@ -1,13 +1,12 @@
 
-import React, { useState } from "react";
+import React, { useState }from "react";
+import { Link } from 'react-router-dom';
 import Case from "./Case"
 import PropTypes from 'prop-types';
 
+const CasesTable = ( { filteredCases }) => {
 
-
-export const CasesTable = ( { filteredCases }) => {
-
-  const [expandedRow, setExpandedRow] = useState(null); 
+  const [expandedRow, setExpandedRow] = useState(null);
 
     return (
         <table className="table table-bordered">
@@ -66,3 +65,5 @@ CasesTable.propTypes = {
       creation_date: PropTypes.string.isRequired,
   }).isRequired
 };
+
+export default CasesTable
