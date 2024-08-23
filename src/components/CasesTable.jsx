@@ -1,8 +1,9 @@
 
 import React, { useState }from "react";
-import { Link } from 'react-router-dom';
 import Case from "./Case"
 import PropTypes from 'prop-types';
+import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 const CasesTable = ( { filteredCases }) => {
 
@@ -29,7 +30,7 @@ const CasesTable = ( { filteredCases }) => {
                       className="btn"
                       onClick={() => setExpandedRow(expandedRow === caseItem.id ? null : caseItem.id)}
                     >
-                      {expandedRow === caseItem.id ? '▲' : '▼'}
+                      {expandedRow === caseItem.id ? <ArrowDropUpIcon/> : <ArrowDropDownIcon/>}
                     </button>
                   </td>
                   <td>{caseItem.case_key}</td>

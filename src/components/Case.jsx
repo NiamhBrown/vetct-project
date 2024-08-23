@@ -8,7 +8,7 @@ const Case = ( {caseItem} ) => {
   <img src={caseItem.image_url} alt={caseItem.species} className="case-item-image" />
   <div className="case-item-details">
     <p><strong>Reported Date:</strong> {caseItem.reported_date}</p>
-    <p><strong>Species:</strong> {caseItem.species}</p>
+    <p><strong>Status:</strong> {caseItem.status}</p>
     <p><strong>Turnaround Time:</strong> {caseItem.turnaround}</p>
     <Link to={`/case/${caseItem.id}`} state={{ id: `${caseItem.id}`}} className='profile-btn'>View profile</Link>
   </div>

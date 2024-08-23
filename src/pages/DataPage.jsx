@@ -4,7 +4,7 @@ import Stack from '@mui/material/Stack';
 import { getPaginatedCases } from '../services/cases';
 import CasesTable from '../components/CasesTable';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './DataPage.css'
+import './main.css'
 
 const DataPage = () => {
   const [cases, setCases] = useState([]);
