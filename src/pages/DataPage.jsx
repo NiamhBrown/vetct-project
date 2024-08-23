@@ -14,6 +14,7 @@ const DataPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [totalPages, setTotalPages] = useState()
 
+
   const getCases = async () => {
     try {
         setLoading(true);
@@ -23,7 +24,6 @@ const DataPage = () => {
         console.log(cases)
         setTotalPages(response.totalPages)
 
-        console.log("made it in try catch success")
     }
     catch(error) {
         console.error("Error fetching cases:", error);
@@ -62,7 +62,7 @@ const DataPage = () => {
         />
         </div>
         <div>
-            {filteredCases.length === 1 ? `${filteredCases.length} case found` : `${filteredCases.length} cases found`} 
+            {filteredCases.length === 1 ? `Showing ${filteredCases.length} case ` : `Showing ${filteredCases.length} cases`} 
         </div>
 
       {cases.length > 0 ? (
@@ -70,11 +70,12 @@ const DataPage = () => {
       ) : (
         <p>No cases found</p>
       )}
-              <>
+              
             <Stack spacing={2}>
-            <Pagination count={totalPages} color="secondary" onChange={(event, page) => setCurrentPage(page)} page={currentPage}/>
+            <Pagination size="large" className="pag-custom"count={totalPages} onChange={(event, page) => setCurrentPage(page)} page={currentPage}/>
+
           </Stack>
-          </>
+          
     </div>
   );
 };

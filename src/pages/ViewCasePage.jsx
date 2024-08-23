@@ -6,21 +6,24 @@ import { getCase } from "../services/cases";
 
 
 const ViewCasePage = () => {
-    const [caseInfo, setCaseInfo] = useState();
+    const [caseInfo, setCaseInfo] = useState({});
 
     const location = useLocation()
     const { id } = location.state
+    console.log("THIS IS THE ID FROM STATE", id)
 
     const getCaseInfo = async () => {
         try {
             let response = await getCase(id);
             setCaseInfo(response)
-            console.log(caseInfo)
+            console.log("THIS IS response", response)
         }
         catch(error) {
             console.error("Error fetching cases:", error);
         }
+        
       };
+
 
       console.log("caseInfo", caseInfo)
     
@@ -29,7 +32,12 @@ const ViewCasePage = () => {
       }, []);
 
     return (
+        <>
+        <a href="/">back </a>
         <p>{caseInfo.patient}</p>
+        <p>{caseInfo.status}</p>
+
+        </>
     )
 }
 
