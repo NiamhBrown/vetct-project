@@ -1,5 +1,13 @@
+:root {
+  --border-radius: 0.375rem;
+  --primary-color: #880837;
+  --secondary-color: #383838;
+}
+
 body {
-    background-color: #880837;
-    font-family: pt-sans, monospace;
-    padding: 2rem;
+  background-color: var(--primary-color);
+  font-family:
+    Pt Sans,
+    monospace;
+  padding: 2rem;
 }

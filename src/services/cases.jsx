@@ -5,22 +5,20 @@ const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
  * @param caseId The Id of the case being requested.
  * @returns a Promise that returns a case object.
  */
-export const getCase = async (
-  caseId
-) => {
-    let url = `${BACKEND_URL}/cases/${caseId}`;
+export const getCase = async (caseId) => {
+  let url = `${BACKEND_URL}/cases/${caseId}`;
 
-    const response = await fetch(url);
+  const response = await fetch(url);
 
-    const data = await response.json();
+  const data = await response.json();
 
-    if (!response.ok) {
-      throw new Error(`Unable to fetch case with ${caseId}`);
-    }
-    console.log(response)
-    const singleCase = data.data;
+  if (!response.ok) {
+    throw new Error(`Unable to fetch case with ${caseId}`);
+  }
+  console.log(response);
+  const singleCase = data.data;
 
-    return singleCase;
+  return singleCase;
 };
 
 /**
@@ -28,21 +26,19 @@ export const getCase = async (
  * @param currentPage The current page number the user is on.
  * @returns a Promise that returns an array of cases.
  */
-export const getPaginatedCases = async (
-  currentPage
-) => {
-    let url = `${BACKEND_URL}/cases?page=${currentPage}`;
+export const getPaginatedCases = async (currentPage) => {
+  let url = `${BACKEND_URL}/cases?page=${currentPage}`;
 
-    const response = await fetch(url);
+  const response = await fetch(url);
 
-    const data = await response.json();
+  const data = await response.json();
 
-    if (!response.ok) {
-      throw new Error(`Unable to fetch cases on page ${currentPage}`);
-    }
+  if (!response.ok) {
+    throw new Error(`Unable to fetch cases on page ${currentPage}`);
+  }
 
-    const cases = data.data;
-    const totalPages = data.totalPages
+  const cases = data.data;
+  const totalPages = data.totalPages;
 
-    return {cases, totalPages}
+  return { cases, totalPages };
 };
